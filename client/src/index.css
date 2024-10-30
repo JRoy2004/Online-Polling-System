@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: sans-serif, Arial, Helvetica;
+}
+
+.glowing:hover {
+  filter: drop-shadow(0 0 15px rgb(4, 230, 255)) /* Inner glow effect */;
+}
+.font-cursive {
+  font-family: cursive;
+}
+
+/* Fade-In Animation */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.8s ease-out;
+}
+
+/* Smooth Progress Bar Animation */
+@keyframes progressBar {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.animate-progressBar {
+  animation: progressBar 1.5s ease-out;
+}

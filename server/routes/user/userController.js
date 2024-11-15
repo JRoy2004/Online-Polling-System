@@ -65,7 +65,9 @@ export const getAllUsers = async (req, res) => {
       currentPage: parseInt(page),
     });
   } catch (error) {
-    res.status(500).json({ error: "An error occurred while fetching users." });
+    res.status(500).json({
+      error: "An error occurred while fetching users.",
+    });
   }
 };
 
@@ -104,9 +106,9 @@ export const alterAccess = async (req, res) => {
     const user = await User.findById(userId);
 
     if (user.accessStatus !== accessStatus) {
-      res
-        .status(400)
-        .json({ message: "Error while matching access Status of the user" });
+      res.status(400).json({
+        message: "Error while matching access Status of the user",
+      });
     }
 
     user.accessStatus = !accessStatus;
@@ -115,5 +117,24 @@ export const alterAccess = async (req, res) => {
     res.status(200).json({ message: "Access status changed successfully" });
   } catch (error) {
     res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+export const getUser = async (req, res) => {
+  try {
+    const { username } = req.body;
+
+    //console.log(username);
+
+    // Find users by username
+    const users = await User.findOne({ username });
+    //console.log(users.id);
+    if (users) {
+      return res.status(200).json({ exists: true, userIds: users.id });
+    } else {
+      return res.status(200).json({ exists: false });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error: error.message });
   }
 };

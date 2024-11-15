@@ -91,7 +91,7 @@ const AllPolls = () => {
       const { votedUsers } = pollResponse.data;
 
       const userIdResponse = await axios.post(
-        `${import.meta.env.VITE_BASE_URL}/user/getIds`,
+        `${import.meta.env.VITE_BASE_URL}/users/getIds`,
         { username }
       );
 

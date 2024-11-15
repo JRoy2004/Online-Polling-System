@@ -3,6 +3,7 @@ import { FaTrash } from "react-icons/fa";
 import axios from "axios";
 
 const PollForm = ({ pollData, onSubmit, isEdit }) => {
+  // State variables to manage form data//+
   const [question, setQuestion] = useState(pollData.question || "");
   const [options, setOptions] = useState(
     pollData.options || [{ optionText: "" }, { optionText: "" }]
@@ -15,17 +16,21 @@ const PollForm = ({ pollData, onSubmit, isEdit }) => {
   const [expiresAt, setExpiresAt] = useState(pollData.expiresAt || "");
   const [tags, setTags] = useState(pollData.tags?.join(",") || "");
 
+  // Function to handle changes in poll options
   const handleOptionChange = (index, value) => {
     const updatedOptions = [...options];
     updatedOptions[index] = { ...updatedOptions[index], optionText: value };
     setOptions(updatedOptions);
   };
 
+  // Function to add a new option
   const addOption = () => setOptions([...options, { optionText: "" }]);
 
+  // Function to remove an option
   const removeOption = (index) =>
     setOptions(options.filter((_, i) => i !== index));
 
+  // Function to handle allowed voters input
   const handleAllowedVoters = async (evt) => {
     const voterList = evt.target.value.split(",").map((user) => user.trim());
     const lastVoter = voterList[voterList.length - 1];
@@ -35,17 +40,20 @@ const PollForm = ({ pollData, onSubmit, isEdit }) => {
       setAllowedVoters(voterList);
 
       if (lastVoter) {
+        // Check if the last entered username exists in the database
         const response = await axios.post(
-          `${import.meta.env.VITE_BASE_URL}/user/getIds`,
+          `${import.meta.env.VITE_BASE_URL}/users/getIds`,
           {
             username: lastVoter,
           }
         );
 
+        // Check for duplicate usernames
         const voterSet = new Set(voterList);
         if (voterList.length !== voterSet.size) {
           setMessage("Duplicate Username");
         } else if (!response.data.exists) {
+          // Check if the username exists
           setMessage("Incorrect username");
         } else {
           setMessage(null); // Clear message if everything is correct
@@ -58,11 +66,13 @@ const PollForm = ({ pollData, onSubmit, isEdit }) => {
     }
   };
 
+  // Function to handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
     const optionTexts = options.map((opt) => opt.optionText.trim());
     const uniqueOptions = new Set(optionTexts);
 
+    // Ensure poll options are unique
     if (uniqueOptions.size !== optionTexts.length) {
       alert(
         "Poll options must be unique. Please remove or edit duplicate options."
@@ -70,6 +80,7 @@ const PollForm = ({ pollData, onSubmit, isEdit }) => {
       return;
     }
 
+    // Call the onSubmit function with the form data
     onSubmit({
       question,
       options,

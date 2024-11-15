@@ -1,9 +1,9 @@
 import * as dotenv from "dotenv";
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
-import User from "../models/User.js";
-import Poll from "../models/Poll.js";
-import connectDB from "./connect.js";
+import User from "../../models/User.js";
+import Poll from "../../models/Poll.js";
+import connectDB from "../connect.js";
 
 // Load environment variables
 dotenv.config({ path: "../.env" }); // Adjust path if necessary
@@ -44,9 +44,6 @@ const seedUsers = [
 
 const seedDatabase = async () => {
   try {
-    // Connect to MongoDB
-    await connectDB(process.env.MONGODB_URL);
-
     // Clear existing data
     await User.deleteMany({});
     await Poll.deleteMany({});
@@ -67,10 +64,7 @@ const seedDatabase = async () => {
     //console.log("Users seeded:", users);
   } catch (error) {
     console.error("Error seeding database:", error);
-  } finally {
-    // Close the connection
-    mongoose.connection.close();
   }
 };
 
-seedDatabase();
+export default seedDatabase;

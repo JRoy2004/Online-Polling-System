@@ -38,7 +38,7 @@ const UpdateUser = () => {
     console.log(oldUsername, newUsername, email, newPassword, oldPassword);
     try {
       const usernameResponse = await axios.post(
-        `${import.meta.env.VITE_BASE_URL}/user/getIds`,
+        `${import.meta.env.VITE_BASE_URL}/users/getIds`,
         {
           username: newUsername,
         }
@@ -49,7 +49,13 @@ const UpdateUser = () => {
       }
       const response = await axios.post(
         `${import.meta.env.VITE_BASE_URL}/auth/update-user`,
-        { oldUsername, newUsername, newEmail: email, newPassword, oldPassword },
+        {
+          oldUsername,
+          newUsername,
+          newEmail: email,
+          newPassword,
+          oldPassword,
+        },
         {
           headers: {
             Authorization: `Bearer ${token}`,

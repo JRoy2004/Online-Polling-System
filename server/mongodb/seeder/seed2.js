@@ -1,9 +1,8 @@
 import * as dotenv from "dotenv";
 import mongoose from "mongoose";
-import bcrypt from "bcryptjs";
-import User from "../models/User.js";
-import Poll from "../models/Poll.js";
-import connectDB from "./connect.js";
+import User from "../../models/User.js";
+import Poll from "../../models/Poll.js";
+import connectDB from "../connect.js";
 
 // Load environment variables
 dotenv.config({ path: "../.env" }); // Adjust path if necessary
@@ -214,9 +213,6 @@ const seedPolls = [
 
 const seedDatabase = async () => {
   try {
-    // Connect to MongoDB
-    await connectDB(process.env.MONGODB_URL);
-
     const users = await User.find({ role: "normal" });
 
     // Map users to their ObjectIds
@@ -455,10 +451,7 @@ const seedDatabase = async () => {
     }
   } catch (error) {
     console.error("Error seeding database:", error);
-  } finally {
-    // Close the connection
-    mongoose.connection.close();
   }
 };
 
-seedDatabase();
+export default seedDatabase;

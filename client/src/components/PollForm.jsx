@@ -59,7 +59,7 @@ const PollForm = ({ pollData, onSubmit, isEdit }) => {
           setMessage(null); // Clear message if everything is correct
         }
 
-        console.log(response.data, lastVoter);
+        // console.log(response.data, lastVoter);
       }
     } catch (error) {
       console.error("Error checking username:", error);

@@ -35,7 +35,7 @@ const UpdateUser = () => {
       setError("New passwords don't match.");
       return;
     }
-    console.log(oldUsername, newUsername, email, newPassword, oldPassword);
+    // console.log(oldUsername, newUsername, email, newPassword, oldPassword);
     try {
       const usernameResponse = await axios.post(
         `${import.meta.env.VITE_BASE_URL}/users/getIds`,
@@ -64,6 +64,7 @@ const UpdateUser = () => {
       );
 
       setMessage("User details updated successfully.");
+      alert("User details updated successfully. Please Verify your Email");
       handleLogout();
     } catch (error) {
       setError("Failed to update user details. Please try again.");

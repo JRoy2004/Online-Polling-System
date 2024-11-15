@@ -18,18 +18,21 @@ import UserPage from "./pages/UserPage";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import Error from "./pages/Error";
+import Verify from "./pages/Verify";
 
 const AppContent = () => {
   const location = useLocation();
-  const hideFooterPaths = ["/login", "/signUp", "/"];
-
+  const hideFooterPaths = ["/login", "/sign-up", "/"];
+  // console.log(location);
+  if (location.pathname.includes("/verify")) return <Verify />;
   return (
     <>
       {!hideFooterPaths.includes(location.pathname) && <Navbar />}
       <Routes>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signUp" element={<SignUp />} />
         <Route path="/" element={<LandingPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/sign-up" element={<SignUp />} />
+        {/* <Route path="/verify/:token" element={<Verify />} /> */}
         <Route path="/createpoll" element={<CreatePoll />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/allpolls" element={<AllPolls />} />

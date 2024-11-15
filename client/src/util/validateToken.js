@@ -11,7 +11,7 @@ export const validateToken = async () => {
           },
         }
       );
-      console.log(response.status);
+      // console.log(response.status);
       return {
         isValid: response.data.isValid,
         userRole: response.data.userRole,

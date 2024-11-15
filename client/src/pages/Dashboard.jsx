@@ -29,7 +29,7 @@ const Dashboard = () => {
             },
           }
         );
-        console.log(response);
+        // console.log(response);
         setUserPolls(response.data);
       } catch (error) {
         console.error("Error fetching user polls:", error);

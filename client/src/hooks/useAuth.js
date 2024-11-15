@@ -14,7 +14,7 @@ export const useAuth = () => {
         if (!isValid) navigate("/login");
       } catch {
         setIsLoggedin(false);
-        navigate("/login");
+        navigate("/");
       }
     };
     checkLoginStatus();

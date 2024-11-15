@@ -1,7 +1,6 @@
 import express from "express";
 import {
   register,
-  verifyEmail,
   login,
   isUnique,
   validateToken,

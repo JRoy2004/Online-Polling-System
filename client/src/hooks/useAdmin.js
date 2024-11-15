@@ -17,12 +17,12 @@ export const useAdmin = () => {
 
         // Navigate only if not logged in or not an admin
         if (!isValid || userRole !== "admin") {
-          navigate("/login");
+          navigate("/");
         }
       } catch {
         setIsLoggedin(false);
         setIsAdmin(false);
-        navigate("/login");
+        navigate("/");
       }
     };
     checkLoginStatus();

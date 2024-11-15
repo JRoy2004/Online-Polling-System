@@ -38,6 +38,7 @@ const SignUp = () => {
         }
       );
       if (response.status === 201 || response.status === 200) {
+        alert("Verify your Email");
         navigate("/login");
       }
     } catch (error) {

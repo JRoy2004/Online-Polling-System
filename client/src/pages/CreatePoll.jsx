@@ -10,7 +10,7 @@ const CreatePoll = () => {
 
   const handleSubmit = async (pollData) => {
     const token = localStorage.getItem("token");
-    console.log(pollData);
+    // console.log(pollData);
 
     try {
       const response = await axios.post(

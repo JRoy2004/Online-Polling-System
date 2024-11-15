@@ -180,7 +180,7 @@ export const verifyChange = async (req, res) => {
   try {
     // Decode the token
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    console.log(decoded);
+    // console.log(decoded);
     // Fetch the user using the decoded id
     const user = await User.findById(decoded.id);
 
@@ -197,7 +197,7 @@ export const verifyChange = async (req, res) => {
       // Mark user as verified
       user.isVerified = true;
       await user.save();
-      return res.status(200).json({ message: "Email verified successfully." });
+      return res.status(200).send({ message: "Email verified successfully." });
     }
 
     // If it's an email, username, or password change

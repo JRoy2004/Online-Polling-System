@@ -20,7 +20,7 @@ export const sendVerificationEmail = async (
     verificationToken = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
       expiresIn: "1h",
     });
-  const verificationUrl = `${process.env.BASE_URL}/api/auth/verify/${verificationToken}`;
+  const verificationUrl = `${process.env.FRONTEND_URL}/verify/${verificationToken}`;
 
   await transporter.sendMail({
     from: process.env.EMAIL_USER,

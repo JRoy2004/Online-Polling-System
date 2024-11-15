@@ -44,7 +44,7 @@ const LoginPage = () => {
         <h3 className="text-center p-4 text-sm font-serif font-semibold">or</h3>
         <div className="font-mono text-sm text-center">
           Don't have an account? &nbsp;
-          <Link to="/SignUp" className="text-blue-500 underline">
+          <Link to="/sign-up" className="text-blue-500 underline">
             Create an account
           </Link>
         </div>

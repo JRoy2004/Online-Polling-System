@@ -3,7 +3,7 @@ import { FaTrash } from "react-icons/fa";
 import axios from "axios";
 
 const PollForm = ({ pollData, onSubmit, isEdit }) => {
-  // State variables to manage form data//+
+  // State variables to manage form data
   const [question, setQuestion] = useState(pollData.question || "");
   const [options, setOptions] = useState(
     pollData.options || [{ optionText: "" }, { optionText: "" }]

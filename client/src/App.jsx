@@ -24,7 +24,13 @@ const AppContent = () => {
   const location = useLocation();
   const hideFooterPaths = ["/login", "/sign-up", "/"];
   // console.log(location);
-  if (location.pathname.includes("/verify")) return <Verify />;
+  if (location.pathname.includes("/verify")) {
+    return (
+      <Routes>
+        <Route path="/verify/:token" element={<Verify />} />
+      </Routes>
+    );
+  }
   return (
     <>
       {!hideFooterPaths.includes(location.pathname) && <Navbar />}
@@ -32,7 +38,6 @@ const AppContent = () => {
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/sign-up" element={<SignUp />} />
-        {/* <Route path="/verify/:token" element={<Verify />} /> */}
         <Route path="/createpoll" element={<CreatePoll />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/allpolls" element={<AllPolls />} />
